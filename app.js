@@ -1,8 +1,5 @@
 const installButton = document.querySelector('#installButton');
 const toast = document.querySelector('#toast');
-const searchInput = document.querySelector('#searchInput');
-const projectCards = [...document.querySelectorAll('.project-card')];
-const noResults = document.querySelector('#noResults');
 let installPrompt;
 let installedAppDetected = false;
 let toastTimer;
@@ -28,18 +25,6 @@ function showToast(message) {
 }
 
 document.querySelector('#year').textContent = new Date().getFullYear();
-
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.trim().toLocaleLowerCase('pt-PT');
-  let visible = 0;
-  projectCards.forEach(card => {
-    const text = `${card.textContent} ${card.dataset.search}`.toLocaleLowerCase('pt-PT');
-    const match = text.includes(query);
-    card.hidden = !match;
-    if (match) visible += 1;
-  });
-  noResults.hidden = visible > 0;
-});
 
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
