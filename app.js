@@ -6,12 +6,13 @@ const noResults = document.querySelector('#noResults');
 let installPrompt;
 let toastTimer;
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4800);
 }
 
 document.querySelector('#year').textContent = new Date().getFullYear();
@@ -31,26 +32,34 @@ searchInput.addEventListener('input', () => {
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
   installPrompt = event;
+  installButton.textContent = 'Instalar app';
   installButton.hidden = false;
 });
 
 installButton.addEventListener('click', async () => {
   if (installPrompt) {
-    installPrompt.prompt();
-    await installPrompt.userChoice;
+    const promptEvent = installPrompt;
     installPrompt = null;
-    installButton.hidden = true;
+    await promptEvent.prompt();
+    const choice = await promptEvent.userChoice;
+    installButton.hidden = choice.outcome === 'accepted';
   } else if (isIOS) {
     showToast('No Safari, toca em Partilhar e escolhe «Adicionar ao ecrã principal».');
+  } else {
+    showToast('Abre o menu do navegador e escolhe «Instalar app» ou «Adicionar ao ecrã principal».');
   }
 });
 
-if (isIOS && !window.matchMedia('(display-mode: standalone)').matches) {
-  installButton.textContent = 'Como instalar';
-  installButton.hidden = false;
+if (isStandalone) {
+  installButton.hidden = true;
+} else if (isIOS) {
+  installButton.textContent = 'Adicionar ao ecrã';
 }
 
-window.addEventListener('appinstalled', () => showToast('App instalada. Boas leituras!'));
+window.addEventListener('appinstalled', () => {
+  installButton.hidden = true;
+  showToast('App instalada. Boas leituras!');
+});
 
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', async () => {
