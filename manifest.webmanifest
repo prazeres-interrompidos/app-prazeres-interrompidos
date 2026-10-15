@@ -7,13 +7,37 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait-primary",
   "theme_color": "#103c40",
   "background_color": "#103c40",
-  "categories": ["books", "education", "entertainment"],
+  "categories": [
+    "books",
+    "education",
+    "entertainment"
+  ],
   "icons": [
-    { "src": "./assets/app-icon-192-v4.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./assets/app-icon-512-v4.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "./assets/app-icon-192-v4.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/app-icon-512-v4.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "./manifest.webmanifest?v=5",
+      "id": "https://prazeres-interrompidos.github.io/app-prazeres-interrompidos/"
+    }
   ]
 }

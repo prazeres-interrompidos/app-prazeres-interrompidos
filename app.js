@@ -4,10 +4,21 @@ const searchInput = document.querySelector('#searchInput');
 const projectCards = [...document.querySelectorAll('.project-card')];
 const noResults = document.querySelector('#noResults');
 let installPrompt;
+let installedAppDetected = false;
 let toastTimer;
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 document.documentElement.classList.toggle('standalone-mode', isStandalone);
+
+if (!isStandalone && 'getInstalledRelatedApps' in navigator) {
+  navigator.getInstalledRelatedApps().then(apps => {
+    installedAppDetected = apps.some(app => app.platform === 'webapp');
+    if (installedAppDetected) {
+      installPrompt = null;
+      installButton.hidden = true;
+    }
+  }).catch(() => {});
+}
 
 function showToast(message) {
   toast.textContent = message;
@@ -38,8 +49,8 @@ window.addEventListener('beforeinstallprompt', event => {
 });
 
 installButton.addEventListener('click', async () => {
-  if (isStandalone) {
-    showToast('A app já está instalada neste dispositivo.');
+  if (isStandalone || installedAppDetected) {
+    installButton.hidden = true;
   } else if (installPrompt) {
     const promptEvent = installPrompt;
     installPrompt = null;
@@ -66,7 +77,7 @@ window.addEventListener('appinstalled', () => {
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js?v=7', { updateViaCache: 'none' });
+      const registration = await navigator.serviceWorker.register('./sw.js?v=8', { updateViaCache: 'none' });
       registration.addEventListener('updatefound', () => {
         const worker = registration.installing;
         if (!worker) return;
