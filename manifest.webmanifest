@@ -13,7 +13,7 @@
   "background_color": "#103c40",
   "categories": ["books", "education", "entertainment"],
   "icons": [
-    { "src": "./assets/logo-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./assets/logo-512.jpg", "sizes": "512x512", "type": "image/jpeg", "purpose": "any maskable" }
+    { "src": "./assets/app-icon-192-v4.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/app-icon-512-v4.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }
