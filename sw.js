@@ -1,5 +1,5 @@
-const CACHE = 'prazeres-app-shell-v9';
-const SHELL = ['./', './index.html', './styles.css?v=4', './app.js?v=9', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
+const CACHE = 'prazeres-app-shell-v10';
+const SHELL = ['./', './index.html', './styles.css?v=4', './app.js?v=10', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -13,6 +13,14 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
+  // Refresh installation metadata and icons even when an older URL is reused.
+  if (url.pathname.endsWith('/manifest.webmanifest') || /\/assets\/.*\.(png|jpg|svg)$/.test(url.pathname)) {
+    event.respondWith(fetch(request, { cache: 'no-cache' }).then(response => {
+      if (response.ok) caches.open(CACHE).then(cache => cache.put(request, response.clone()));
+      return response;
+    }).catch(() => caches.match(request)));
+    return;
+  }
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).then(response => {
       const copy = response.clone();
