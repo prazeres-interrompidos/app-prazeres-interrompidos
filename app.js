@@ -37,12 +37,14 @@ window.addEventListener('beforeinstallprompt', event => {
 });
 
 installButton.addEventListener('click', async () => {
-  if (installPrompt) {
+  if (isStandalone) {
+    showToast('A app já está instalada neste dispositivo.');
+  } else if (installPrompt) {
     const promptEvent = installPrompt;
     installPrompt = null;
     await promptEvent.prompt();
     const choice = await promptEvent.userChoice;
-    installButton.hidden = choice.outcome === 'accepted';
+    if (choice.outcome === 'accepted') installButton.textContent = 'App instalada';
   } else if (isIOS) {
     showToast('No Safari, toca em Partilhar e escolhe «Adicionar ao ecrã principal».');
   } else {
@@ -51,20 +53,20 @@ installButton.addEventListener('click', async () => {
 });
 
 if (isStandalone) {
-  installButton.hidden = true;
+  installButton.textContent = 'App instalada';
 } else if (isIOS) {
   installButton.textContent = 'Adicionar ao ecrã';
 }
 
 window.addEventListener('appinstalled', () => {
-  installButton.hidden = true;
+  installButton.textContent = 'App instalada';
   showToast('App instalada. Boas leituras!');
 });
 
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js');
+      const registration = await navigator.serviceWorker.register('./sw.js?v=2', { updateViaCache: 'none' });
       registration.addEventListener('updatefound', () => {
         const worker = registration.installing;
         if (!worker) return;
