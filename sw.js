@@ -1,5 +1,5 @@
-const CACHE = 'prazeres-app-shell-v11';
-const SHELL = ['./', './index.html', './styles.css?v=4', './app.js?v=11', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
+const CACHE = 'prazeres-app-shell-v12';
+const SHELL = ['./', './index.html', './styles.css?v=4', './app.js?v=12', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
