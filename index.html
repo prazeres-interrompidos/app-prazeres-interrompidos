@@ -1,1 +1,108 @@
-cat: index.html: No such file or directory
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#181319">
+  <meta name="description" content="A app oficial do Prazeres Interrompidos. Descobre livros, escritores, podcasts, rádio e projetos de leitura.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prazeres">
+  <title>Prazeres Interrompidos — App oficial</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-frame">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Prazeres Interrompidos, início">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+        <span class="brand-name">Prazeres <b>Interrompidos</b></span>
+      </a>
+      <button class="install-button" id="installButton" type="button">Instalar app</button>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> Projeto internacional</p>
+          <h1 id="heroTitle">O prazer de ler<br><em>vai contigo.</em></h1>
+          <p class="hero-text">Livros, escritores e vozes de vários lugares do mundo, sempre à mão.</p>
+          <a class="primary-link" href="https://www.prazeresinterrompidos.pt/" target="_blank" rel="noopener noreferrer">
+            Explorar o projeto <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="book book-back"></div>
+          <div class="book book-front"><span>PI</span><i></i></div>
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <span class="star star-one">✳</span><span class="star star-two">✦</span>
+          <span class="art-caption">LER · OUVIR · DESCOBRIR</span>
+        </div>
+      </section>
+
+      <section class="quick-section" aria-labelledby="quickTitle">
+        <div class="section-heading">
+          <div><p class="eyebrow">Começa por aqui</p><h2 id="quickTitle">O que te apetece?</h2></div>
+        </div>
+        <div class="quick-grid">
+          <a class="quick-card quick-podcast" href="https://www.prazeresinterrompidos.pt/podcast" target="_blank" rel="noopener noreferrer">
+            <span class="quick-icon" aria-hidden="true">▶</span><span><b>Ouvir o podcast</b><small>Um livro, muitas vozes</small></span><span class="arrow">↗</span>
+          </a>
+          <a class="quick-card quick-radio" href="https://www.prazeresinterrompidos.pt/Radio-Prazeres-Interrompidos" target="_blank" rel="noopener noreferrer">
+            <span class="quick-icon radio-icon" aria-hidden="true">◖</span><span><b>Sintonizar a rádio</b><small>Rádio Prazeres Interrompidos</small></span><span class="arrow">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="discover-section" aria-labelledby="discoverTitle">
+        <div class="section-heading discover-heading">
+          <div><p class="eyebrow">O universo Prazeres</p><h2 id="discoverTitle">Descobre os projetos</h2></div>
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Pesquisar" aria-label="Pesquisar projetos"></label>
+        </div>
+        <div class="project-grid" id="projectGrid">
+          <a class="project-card" data-search="estante virtual livros escritores obras" href="https://www.prazeresinterrompidos.pt/estante-virtual" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-books" aria-hidden="true"><i></i><i></i><i></i></span><span class="project-text"><b>Estante Virtual</b><small>Explora as obras dos escritores parceiros.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="project-card" data-search="museu virtual livros capas episódios ouvir" href="https://www.prazeresinterrompidos.pt/museu-virtual" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-museum" aria-hidden="true">▧</span><span class="project-text"><b>Museu Virtual</b><small>Um espaço para ver, ouvir e descobrir livros.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="project-card" data-search="biblioteca universal livros gratuitos" href="https://www.prazeresinterrompidos.pt/livrosgratis" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-library" aria-hidden="true">▤</span><span class="project-text"><b>Biblioteca Universal</b><small>Leituras gratuitas para descobrir.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="project-card" data-search="quiosque virtual literatura revistas editoras" href="https://www.prazeresinterrompidos.pt/quiosque-virtual" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-kiosk" aria-hidden="true">▥</span><span class="project-text"><b>Quiosque Virtual</b><small>Uma montra para o mundo literário.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="project-card" data-search="escritores parceiros autores biografias" href="https://www.prazeresinterrompidos.pt/escritores-parceiros" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-writers" aria-hidden="true">✳</span><span class="project-text"><b>Escritores parceiros</b><small>Conhece autores e as suas histórias.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="project-card" data-search="equipa podcast vozes participantes" href="https://www.prazeresinterrompidos.pt/equipa-do-podcast" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-team" aria-hidden="true">◉</span><span class="project-text"><b>Equipa do podcast</b><small>As vozes que dão vida ao projeto.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="project-card" data-search="rádio widgets ouvir emissão" href="https://www.prazeresinterrompidos.pt/Radio-Prazeres-Interrompidos" target="_blank" rel="noopener noreferrer">
+            <span class="project-icon icon-signal" aria-hidden="true">)))</span><span class="project-text"><b>Rádio Prazeres</b><small>Ouve a emissão e leva-a contigo.</small></span><span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p class="no-results" id="noResults" hidden>Não encontrei projetos com esse nome.</p>
+      </section>
+
+      <section class="note-card" aria-label="Conteúdos atualizados">
+        <span class="note-symbol" aria-hidden="true">↻</span>
+        <p><b>Conteúdos sempre atuais.</b> A app abre as páginas oficiais do projeto. Quando atualizas uma página no site, a versão nova fica disponível através desta app.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">Prazeres <b>Interrompidos</b></div>
+      <p>Projeto Internacional de Promoção da Leitura, dos Livros e dos Escritores</p>
+      <a href="https://www.prazeresinterrompidos.pt/" target="_blank" rel="noopener noreferrer">Visitar o site oficial ↗</a>
+      <small>© <span id="year"></span> Prazeres Interrompidos</small>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
