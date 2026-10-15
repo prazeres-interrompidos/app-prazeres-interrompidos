@@ -7,6 +7,7 @@ let installPrompt;
 let toastTimer;
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+document.documentElement.classList.toggle('standalone-mode', isStandalone);
 
 function showToast(message) {
   toast.textContent = message;
@@ -32,7 +33,7 @@ searchInput.addEventListener('input', () => {
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
   installPrompt = event;
-  installButton.textContent = 'Instalar app';
+  installButton.textContent = 'Instalar a app';
   installButton.hidden = false;
 });
 
@@ -65,7 +66,7 @@ window.addEventListener('appinstalled', () => {
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js?v=6', { updateViaCache: 'none' });
+      const registration = await navigator.serviceWorker.register('./sw.js?v=7', { updateViaCache: 'none' });
       registration.addEventListener('updatefound', () => {
         const worker = registration.installing;
         if (!worker) return;
