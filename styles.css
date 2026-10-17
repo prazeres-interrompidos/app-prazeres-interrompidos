@@ -27,3 +27,6 @@ html:not(.standalone-mode) .footer{display:none}
 html:not(.standalone-mode) .hero{border-bottom:0}
 html:not(.standalone-mode) .install-button{padding:13px 22px;font-size:14px;box-shadow:0 6px 20px rgba(255,196,61,.25)}
 @media(max-width:380px){.app-frame{padding-right:12px;padding-left:12px}.topbar{gap:8px}.brand{gap:7px}.brand-name{font-size:15px}.install-button{padding:11px 12px;font-size:11px;white-space:nowrap}}
+
+.quick-whatsapp{grid-column:1/-1;background:linear-gradient(110deg,rgba(37,211,102,.18),transparent 68%),var(--panel)}
+.quick-whatsapp .whatsapp-icon{background:#168c52;color:#fff}
