@@ -61,6 +61,14 @@ window.addEventListener('appinstalled', () => {
 
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', async () => {
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    let reloadedAfterUpdate = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController && !reloadedAfterUpdate) {
+        reloadedAfterUpdate = true;
+        window.location.reload();
+      }
+    });
     try {
       const registration = await navigator.serviceWorker.register('./sw.js?v=11', { updateViaCache: 'none' });
       registration.addEventListener('updatefound', () => {
