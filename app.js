@@ -68,10 +68,11 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
         if (!worker) return;
         worker.addEventListener('statechange', () => {
           if (worker.state === 'installed' && navigator.serviceWorker.controller) {
-            showToast('A app foi atualizada. Fecha e volta a abrir para ver as novidades.');
+            showToast('A app foi atualizada.');
           }
         });
       });
+      await registration.update();
     } catch (error) {
       console.warn('Não foi possível preparar o modo offline da app.', error);
     }
