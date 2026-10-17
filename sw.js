@@ -1,12 +1,20 @@
-const CACHE = 'prazeres-app-shell-v13';
-const SHELL = ['./', './index.html', './styles.css?v=5', './app.js?v=12', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
+const CACHE = 'prazeres-app-shell-v14';
+const SHELL = ['./', './index.html', './styles.css?v=5', './app.js?v=13', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('prazeres-app-shell-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter(key => key.startsWith('prazeres-app-shell-') && key !== CACHE).map(key => caches.delete(key)));
+    await self.clients.claim();
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    await Promise.all(windows
+      .filter(client => client.url.startsWith(self.registration.scope))
+      .map(client => client.navigate(client.url)));
+  })());
 });
 
 self.addEventListener('fetch', event => {
@@ -22,7 +30,7 @@ self.addEventListener('fetch', event => {
     return;
   }
   if (request.mode === 'navigate') {
-    event.respondWith(fetch(request).then(response => {
+    event.respondWith(fetch(request, { cache: 'no-cache' }).then(response => {
       const copy = response.clone();
       caches.open(CACHE).then(cache => cache.put('./index.html', copy));
       return response;
