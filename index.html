@@ -19,6 +19,8 @@
     }
   </script>
   <link rel="stylesheet" href="./styles.css?v=5">
+  <link rel="stylesheet" href="./apple-top10.css?v=2e472da9593b">
+  <script type="module" src="./apple-top10.js?v=2e472da9593b"></script>
 </head>
 <body>
   <div class="app-frame">
@@ -42,6 +44,8 @@
         </div>
       </section>
 
+      <section class="apple-top10 apple-top10--app" data-apple-top10 hidden aria-labelledby="apple-top10-title" aria-live="polite"><div class="apple-top10__head"><h2 class="apple-top10__title" id="apple-top10-title">Hoje no Top 10 da Apple Podcasts</h2><time class="apple-top10__date" data-top10-date></time></div><ul class="apple-top10__list" data-top10-list></ul><a class="apple-top10__link" href="https://www.prazeresinterrompidos.pt/o-mundo-podcast/Observatorio-do-Podcast" target="_blank" rel="noopener noreferrer">Observatório do Podcast</a></section>
+
       <section class="quick-section" aria-labelledby="quickTitle">
         <div class="section-heading">
           <div><p class="eyebrow">Começa por aqui</p><h2 id="quickTitle">O que te apetece?</h2></div>
@@ -58,6 +62,9 @@
           </a>
           <a class="quick-card" style="grid-column: 1 / -1" href="https://www.prazeresinterrompidos.pt/book-trailers" target="_blank" rel="noopener noreferrer">
             <span class="quick-icon" aria-hidden="true">▶</span><span><b>Book Trailers</b><small>Descobre os filmes e GIFs dos livros.</small></span><span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="quick-card" style="grid-column: 1 / -1" href="https://www.prazeresinterrompidos.pt/o-mundo-podcast/Observatorio-do-Podcast" target="_blank" rel="noopener noreferrer">
+            <span class="quick-icon" aria-hidden="true">◎</span><span><b>Observatório do Podcast</b><small>Acompanha as classificações do podcast na Apple Podcasts.</small></span>
           </a>
           <a class="quick-card quick-whatsapp" href="https://whatsapp.com/channel/0029Vb8hWzsFHWpzmYKEKH3H" target="_blank" rel="noopener noreferrer">
             <span class="quick-icon whatsapp-icon" aria-hidden="true">WA</span><span><b>Novidades no WhatsApp</b><small>Acompanha as novidades do projeto</small></span><span class="arrow">↗</span>
@@ -116,6 +123,6 @@
     </footer>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./app.js?v=14" defer></script>
+  <script src="./app.js?v=15" defer></script>
 </body>
 </html>

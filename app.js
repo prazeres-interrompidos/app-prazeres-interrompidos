@@ -70,7 +70,7 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
       }
     });
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js?v=11', { updateViaCache: 'none' });
+      const registration = await navigator.serviceWorker.register('./sw.js?v=12', { updateViaCache: 'none' });
       registration.addEventListener('updatefound', () => {
         const worker = registration.installing;
         if (!worker) return;
