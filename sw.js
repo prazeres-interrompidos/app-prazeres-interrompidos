@@ -1,4 +1,4 @@
-const CACHE = 'prazeres-app-shell-v18';
+const CACHE = 'prazeres-app-shell-v19';
 const SHELL = ['./', './index.html', './styles.css?v=5', './app.js?v=16', './apple-top10.css?v=39853df51f3c', './apple-top10.js?v=39853df51f3c', './manifest.webmanifest?v=9', './assets/app-icon-192-v9.png', './assets/app-icon-512-v9.png', './assets/favicon-v9.png', './assets/logo-prazeres.jpg', './assets/logo-192.png', './assets/logo-apple.png?v=4'];
 
 self.addEventListener('install', event => {
